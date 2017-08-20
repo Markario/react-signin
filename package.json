@@ -1,6 +1,6 @@
 {
   "name": "react-signin",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "react-signin React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -19,12 +19,19 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4"
   },
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
-    "nwb": "0.18.x"
+    "nwb": "0.18.x",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.1.2",
+    "redux": "^3.7.2"
   },
   "author": "",
   "homepage": "",
