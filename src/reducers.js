@@ -48,8 +48,18 @@ const RedirectReducer = (state = null, action) => {
 	}
 }
 
+const UserLoadedReducer = (state = false, action) => {
+	switch(action.type){
+		case USER_LOADED:
+			return true;
+		default:
+			return state;
+	}
+}
+
 export default {
 	user: UserReducer,
 	token: TokenReducer,
-	redirectFromLogin: RedirectReducer
+	redirectFromLogin: RedirectReducer,
+	hasUserLoaded: UserLoadedReducer
 };
