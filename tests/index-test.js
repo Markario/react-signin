@@ -1,23 +1,16 @@
-import expect from 'expect'
-import React from 'react'
-import {render, unmountComponentAtNode} from 'react-dom'
+import expect from 'expect';
+import * as ReactSignin from 'src/';
 
-import Component from 'src/'
+describe('ReactSignin', () => {
+  it('is a valid module', () => {
+  	expect(ReactSignin);
+  });
 
-describe('Component', () => {
-  let node
-
-  beforeEach(() => {
-    node = document.createElement('div')
-  })
-
-  afterEach(() => {
-    unmountComponentAtNode(node)
-  })
-
-  it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
-      expect(node.innerHTML).toContain('Welcome to React components')
-    })
-  })
+  it('exports necessary modules', function(){
+  	const { MakeActions, ActionTypes, Reducers, Selectors } = ReactSignin;
+  	expect(MakeActions);
+  	expect(ActionTypes);
+  	expect(Reducers);
+  	expect(Selectors);
+  });
 })

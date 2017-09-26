@@ -1,6 +1,5 @@
-import { Actions } from './constants';
+import ActionTypes from './actionTypes';
 import _cloneDeep from 'lodash/cloneDeep';
-import { combineReducers } from 'redux';
 
 const { 
 	USER_LOADED, 
@@ -8,7 +7,7 @@ const {
 	USER_LOGIN_SUCCESS, 
 	USER_LOGIN_ERROR, 
 	USER_LOGIN_REDIRECT_REQUEST 
-} = Actions;
+} = ActionTypes;
 
 const UserReducer = (state = null, action) => {
 	switch(action.type){
@@ -49,10 +48,8 @@ const RedirectReducer = (state = null, action) => {
 	}
 }
 
-const combinedReducers = combineReducers({
+export default {
 	user: UserReducer,
 	token: TokenReducer,
 	redirectFromLogin: RedirectReducer
-});
-
-export default combinedReducers;
+};

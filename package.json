@@ -1,7 +1,7 @@
 {
-  "name": "react-signin",
-  "version": "0.1.0",
-  "description": "react-signin React component",
+  "name": "redux-signin",
+  "version": "0.1.1",
+  "description": "redux-signin: redux implementation to use against a koa-signin server",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -19,19 +19,10 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "axios": "^0.16.2",
-    "lodash": "^4.17.4"
-  },
-  "peerDependencies": {
-    "react": "15.x"
+    "lodash": "^4.x"
   },
   "devDependencies": {
-    "nwb": "0.18.x",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.1.2",
-    "redux": "^3.7.2"
+    "nwb": "0.18.x"
   },
   "author": "",
   "homepage": "",
