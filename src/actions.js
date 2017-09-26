@@ -1,7 +1,7 @@
 import ActionTypes from './actionTypes';
 import * as Selectors from './selectors';
 
-export default ({ getItem, setItem, removeItem, loginLocation }) => ({
+export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
   Load: () => (dispatch, getState) => {
     const token = getItem('react-signin.token');
     const user = token && JSON.parse(getItem('react-signin.user'));
@@ -15,7 +15,7 @@ export default ({ getItem, setItem, removeItem, loginLocation }) => ({
       redirectFromLogin: redirectFromLogin
     });
   },
-  RedirectToLogin: (currentLocation, setLocation) => (dispatch, getState) => {
+  RedirectToLogin: (currentLocation, loginLocation, setLocation) => (dispatch, getState) => {
     setItem('react-signin.redirectFromLogin', currentLocation);
 
     dispatch({
@@ -25,7 +25,7 @@ export default ({ getItem, setItem, removeItem, loginLocation }) => ({
 
     setLocation(loginLocation);
   },
-  LoginUser: (user, token, setLocation) => (dispatch, getState) => {
+  LoginUser: (user, token, loginLocation, defaultLocation, setLocation) => (dispatch, getState) => {
     if(user && token){
       setItem('react-signin.token', token);
       setItem('react-signin.user', JSON.stringify(user));
@@ -53,7 +53,7 @@ export default ({ getItem, setItem, removeItem, loginLocation }) => ({
       });
     }
   },
-  Logout: (setLocation) => (dispatch, getState) => {
+  Logout: (setLocation, loginLocation) => (dispatch, getState) => {
     removeItem('react-signin.token');
     removeItem('react-signin.user');
     removeItem('react-signin.redirectFromLogin');
