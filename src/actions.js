@@ -31,7 +31,7 @@ export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
       setItem('react-signin.user', JSON.stringify(user));
       removeItem('react-signin.redirectFromLogin');
 
-      let redirect = Selectors.getRedirectFromLogin(getState());
+      let redirect = Selectors.getRedirectFromLogin(getState()) || defaultLocation;
 
       dispatch({
         type: ActionTypes.USER_LOGIN_SUCCESS,
