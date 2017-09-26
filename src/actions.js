@@ -2,9 +2,9 @@ import ActionTypes from './actionTypes';
 import * as Selectors from './selectors';
 
 export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
-  Load: () => (dispatch, getState) => {
-    const token = getItem('react-signin.token');
-    const user = token && JSON.parse(getItem('react-signin.user'));
+  Load: () => async (dispatch, getState) => {
+    const token = await getItem('react-signin.token');
+    const user = token && JSON.parse((await getItem('react-signin.user')));
     // const isLoggedIn = !!token && !!user; // TODO && user.exp > Math.round(new Date().getTime() / 1000)
     const redirectFromLogin = getItem('react-signin.redirectFromLogin', null);
 
@@ -15,8 +15,8 @@ export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
       redirectFromLogin: redirectFromLogin
     });
   },
-  RedirectToLogin: (currentLocation, loginLocation, setLocation) => (dispatch, getState) => {
-    setItem('react-signin.redirectFromLogin', currentLocation);
+  RedirectToLogin: (currentLocation, loginLocation, setLocation) => async (dispatch, getState) => {
+    await setItem('react-signin.redirectFromLogin', currentLocation);
 
     dispatch({
       type: ActionTypes.USER_LOGIN_REDIRECT_REQUEST,
@@ -25,11 +25,11 @@ export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
 
     setLocation(loginLocation);
   },
-  LoginUser: (user, token, loginLocation, defaultLocation, setLocation) => (dispatch, getState) => {
+  LoginUser: (user, token, loginLocation, defaultLocation, setLocation) => async (dispatch, getState) => {
     if(user && token){
-      setItem('react-signin.token', token);
-      setItem('react-signin.user', JSON.stringify(user));
-      removeItem('react-signin.redirectFromLogin');
+      await setItem('react-signin.token', token);
+      await setItem('react-signin.user', JSON.stringify(user));
+      await removeItem('react-signin.redirectFromLogin');
 
       let redirect = Selectors.getRedirectFromLogin(getState()) || defaultLocation;
 
@@ -53,10 +53,10 @@ export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
       });
     }
   },
-  Logout: (setLocation, loginLocation) => (dispatch, getState) => {
-    removeItem('react-signin.token');
-    removeItem('react-signin.user');
-    removeItem('react-signin.redirectFromLogin');
+  Logout: (setLocation, loginLocation) => async (dispatch, getState) => {
+    await removeItem('react-signin.token');
+    await removeItem('react-signin.user');
+    await removeItem('react-signin.redirectFromLogin');
 
     dispatch({
       type: ActionTypes.USER_LOGOUT_SUCCESS
