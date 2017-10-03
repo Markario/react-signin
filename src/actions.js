@@ -6,7 +6,7 @@ export default ({ getItem, setItem, removeItem, defaultLocation }) => ({
     const token = await getItem('react-signin.token');
     const user = token && JSON.parse((await getItem('react-signin.user')));
     // const isLoggedIn = !!token && !!user; // TODO && user.exp > Math.round(new Date().getTime() / 1000)
-    const redirectFromLogin = getItem('react-signin.redirectFromLogin', null);
+    const redirectFromLogin = await getItem('react-signin.redirectFromLogin', null);
 
     dispatch({
       type: ActionTypes.USER_LOADED,
